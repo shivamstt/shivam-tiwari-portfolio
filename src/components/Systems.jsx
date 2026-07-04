@@ -48,9 +48,8 @@ const Systems = () => {
             gap: 'var(--spacing-md)'
         }}>
             {services.map((s, i) => (
-                <div key={i} style={{
-                    border: '1px solid var(--border)',
-                    borderRadius: '8px',
+                <div key={i} className="glass card-glow" style={{
+                    borderRadius: '10px',
                     padding: 'var(--spacing-md)',
                     display: 'flex',
                     flexDirection: 'column',

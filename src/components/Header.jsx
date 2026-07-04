@@ -7,39 +7,44 @@ const Header = () => {
     const isHome = location.pathname === '/';
 
     return (
-        <header style={{
-            height: 'var(--header-height)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '0 var(--spacing-md)',
-            maxWidth: 'var(--max-width)',
-            margin: '0 auto',
+        <header className="site-header" style={{
             position: 'sticky',
             top: 0,
-            backgroundColor: 'var(--bg-primary)',
             zIndex: 100,
             borderBottom: '1px solid var(--border)'
         }}>
-            <div style={{ fontWeight: 700, fontSize: '1.1rem', letterSpacing: '-0.02em' }}>
-                <Link to="/" style={{ textDecoration: 'none', color: 'var(--text-primary)' }}>shivam.</Link>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-md)' }}>
-                <nav>
-                    <ul style={{ display: 'flex', gap: 'var(--spacing-md)', listStyle: 'none', margin: 0, padding: 0, fontSize: '0.9rem' }}>
-                        {isHome ? (
-                            <>
-                                <li className="nav-home-link"><a href="#work" style={{ color: 'var(--text-secondary)' }}>Experience</a></li>
-                                <li className="nav-home-link"><a href="#systems" style={{ color: 'var(--text-secondary)' }}>Systems</a></li>
-                                <li className="nav-home-link"><a href="#contact" style={{ color: 'var(--text-secondary)' }}>Contact</a></li>
-                            </>
-                        ) : (
-                            <li><Link to="/" style={{ color: 'var(--text-secondary)' }}>Home</Link></li>
-                        )}
-                        <li><Link to="/blog" style={{ color: 'var(--text-secondary)' }}>Logs</Link></li>
-                    </ul>
-                </nav>
-                <ThemeToggle />
+            <div style={{
+                height: 'var(--header-height)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '0 var(--spacing-md)',
+                maxWidth: 'var(--max-width)',
+                margin: '0 auto',
+            }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.15rem', letterSpacing: '-0.02em' }}>
+                    <Link to="/" style={{ textDecoration: 'none' }}>
+                        <span className="gradient-text">shivam</span>
+                        <span style={{ color: 'var(--accent-2)' }}>.</span>
+                    </Link>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-md)' }}>
+                    <nav>
+                        <ul style={{ display: 'flex', gap: 'var(--spacing-md)', listStyle: 'none', margin: 0, padding: 0, fontSize: '0.9rem' }}>
+                            {isHome ? (
+                                <>
+                                    <li className="nav-home-link"><a href="#work" style={{ color: 'var(--text-secondary)' }}>Experience</a></li>
+                                    <li className="nav-home-link"><a href="#systems" style={{ color: 'var(--text-secondary)' }}>Systems</a></li>
+                                    <li className="nav-home-link"><a href="#contact" style={{ color: 'var(--text-secondary)' }}>Contact</a></li>
+                                </>
+                            ) : (
+                                <li><Link to="/" style={{ color: 'var(--text-secondary)' }}>Home</Link></li>
+                            )}
+                            <li><Link to="/blog" style={{ color: 'var(--text-secondary)' }}>Logs</Link></li>
+                        </ul>
+                    </nav>
+                    <ThemeToggle />
+                </div>
             </div>
         </header>
     );

@@ -25,3 +25,4 @@ public/sitemap.xml
 *.njsproj
 *.sln
 *.sw?
+.vercel

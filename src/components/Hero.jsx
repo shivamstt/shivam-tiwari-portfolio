@@ -1,4 +1,5 @@
 import React from 'react';
+import Terminal from './Terminal';
 
 const metrics = [
     { value: '5+ yrs', label: 'designing and running cloud platforms' },
@@ -32,10 +33,10 @@ const Hero = () => {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--spacing-md)', marginBottom: 'var(--spacing-md)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-md)' }}>
                     <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.95rem', color: 'var(--text-secondary)' }}>shivam.tiwari</span>
-                    <span style={{
+                    <span className="glass" style={{
                         display: 'inline-flex', alignItems: 'center', gap: '7px',
                         fontFamily: 'var(--font-mono)', fontSize: '0.75rem',
-                        color: 'var(--accent)', border: '1px solid var(--border)',
+                        color: 'var(--accent)',
                         padding: '4px 10px', borderRadius: '999px'
                     }}>
                         <span className="status-dot" style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: 'var(--accent)', display: 'inline-block' }}></span>
@@ -43,12 +44,12 @@ const Hero = () => {
                     </span>
                 </div>
                 <button
-                    className="hero-cmd-btn"
+                    className="hero-cmd-btn glass"
                     onClick={openPalette}
                     style={{
-                        background: 'none', cursor: 'pointer',
+                        cursor: 'pointer',
                         fontFamily: 'var(--font-mono)', fontSize: '0.75rem',
-                        color: 'var(--text-secondary)', border: '1px solid var(--border)',
+                        color: 'var(--text-secondary)',
                         padding: '5px 10px', borderRadius: '6px'
                     }}
                     aria-label="Open command palette"
@@ -63,8 +64,9 @@ const Hero = () => {
             }}>
                 Platform Engineer · cloud infrastructure · CI/CD · reliability
             </p>
-            <h1 style={{
-                fontSize: 'clamp(2.2rem, 5vw, 3rem)',
+            <h1 className="gradient-text" style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(2.4rem, 5.5vw, 3.4rem)',
                 marginBottom: 'var(--spacing-md)',
                 lineHeight: 1.15,
                 letterSpacing: '-0.03em'
@@ -82,7 +84,7 @@ const Hero = () => {
                 automated pipelines, and the observability to know it's actually working.
             </p>
 
-            <div style={{ display: 'flex', gap: 'var(--spacing-md)', flexWrap: 'wrap', marginBottom: 'var(--spacing-xl)' }}>
+            <div style={{ display: 'flex', gap: 'var(--spacing-md)', flexWrap: 'wrap', marginBottom: 'var(--spacing-lg)' }}>
                 <a
                     href="https://www.linkedin.com/in/shivamtiwari-i/"
                     target="_blank"
@@ -99,6 +101,10 @@ const Hero = () => {
                 </a>
             </div>
 
+            <div style={{ marginBottom: 'var(--spacing-xl)' }}>
+                <Terminal />
+            </div>
+
             {/* Metric strip */}
             <div style={{
                 display: 'grid',
@@ -106,9 +112,8 @@ const Hero = () => {
                 gap: 'var(--spacing-md)'
             }}>
                 {metrics.map((m, i) => (
-                    <div key={i} style={{
-                        border: '1px solid var(--border)',
-                        borderRadius: '8px',
+                    <div key={i} className="glass card-glow" style={{
+                        borderRadius: '10px',
                         padding: 'var(--spacing-md)'
                     }}>
                         <div style={{

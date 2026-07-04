@@ -8,14 +8,15 @@ const SectionDivider = () => (
 
 const SectionLabel = ({ children }) => (
     <p style={{
+        fontFamily: 'var(--font-mono)',
         fontSize: '0.75rem',
-        letterSpacing: '0.08em',
+        letterSpacing: '0.06em',
         textTransform: 'uppercase',
         color: 'var(--text-secondary)',
         marginBottom: 'var(--spacing-lg)',
         marginTop: 'var(--spacing-lg)'
     }}>
-        {children}
+        <span style={{ color: 'var(--accent-2)' }}>// </span>{children}
     </p>
 );
 
@@ -37,6 +38,7 @@ const experience = [
         company: 'ClearRoute',
         role: 'Quality Cloud Engineer',
         period: 'Nov 2023 – Present',
+        hash: 'f3a91c2',
         location: 'Remote, Pune',
         highlights: [
             'Led migration of the observability platform from AppDynamics to Datadog across 750+ servers, reducing MTTD by 35% and cutting monitoring costs by 20%.',
@@ -52,6 +54,7 @@ const experience = [
         company: 'Starbucks India',
         role: 'Assistant Manager – AWS',
         period: 'May 2023 – Nov 2023',
+        hash: 'b71de08',
         location: 'Mumbai, Maharashtra',
         highlights: [
             'Designed and implemented scalable AWS infrastructure (EC2, VPC, S3, RDS) to support high-availability applications.',
@@ -65,6 +68,7 @@ const experience = [
         company: 'Tata Consultancy Services',
         role: 'AWS Cloud Engineer',
         period: 'Oct 2020 – Apr 2023',
+        hash: '4c8e5a1',
         location: 'Mumbai, Maharashtra',
         highlights: [
             'Reduced provisioning time by 50% by building reusable Terraform templates for multi-environment deployments.',
@@ -120,7 +124,6 @@ const Home = () => {
                 <div className="deploy-log-list" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-xl)' }}>
                     {experience.map((job, i) => {
                         const current = i === 0;
-                        const version = `v${experience.length - i}.0`;
                         return (
                         <div key={i} style={{ display: 'flex', gap: 'var(--spacing-md)' }}>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, paddingTop: '6px' }}>
@@ -143,8 +146,8 @@ const Home = () => {
                                 marginBottom: 'var(--spacing-sm)'
                             }}>
                                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px', flexWrap: 'wrap' }}>
-                                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--accent)' }}>{version}</span>
-                                    <span style={{ fontWeight: 600, fontSize: '1rem' }}>{job.company}</span>
+                                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--accent-2)' }}>#{job.hash}</span>
+                                    <span style={{ fontWeight: 600, fontSize: '1rem', fontFamily: 'var(--font-display)' }}>{job.company}</span>
                                     <span style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>{job.role}</span>
                                 </div>
                                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
@@ -206,9 +209,9 @@ const Home = () => {
             {/* Certifications + Activities */}
             <section>
                 <SectionLabel>Certifications & Activities</SectionLabel>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
                     {certifications.map((cert, i) => (
-                        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '4px' }}>
+                        <div key={i} className="glass card-glow" style={{ borderRadius: '10px', padding: 'var(--spacing-md)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '4px' }}>
                             <div>
                                 {cert.url ? (
                                     <a
@@ -228,7 +231,7 @@ const Home = () => {
                         </div>
                     ))}
                     {activities.map((activity, i) => (
-                        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '4px' }}>
+                        <div key={i} className="glass card-glow" style={{ borderRadius: '10px', padding: 'var(--spacing-md)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '4px' }}>
                             <div>
                                 <p style={{ fontWeight: 500, fontSize: '0.95rem', color: 'var(--text-primary)' }}>{activity.title}</p>
                                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '4px' }}>{activity.subtitle}</p>
@@ -244,7 +247,7 @@ const Home = () => {
             {/* Education */}
             <section>
                 <SectionLabel>Education</SectionLabel>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '4px' }}>
+                <div className="glass card-glow" style={{ borderRadius: '10px', padding: 'var(--spacing-md)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '4px' }}>
                     <div>
                         <p style={{ fontWeight: 500, fontSize: '0.95rem', color: 'var(--text-primary)' }}>{education.degree}</p>
                         <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '4px' }}>{education.school}</p>
