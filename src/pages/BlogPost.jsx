@@ -1,0 +1,175 @@
+import React, { useMemo, useState, useEffect } from 'react';
+import { useParams, Link, Navigate } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+import rehypeHighlight from 'rehype-highlight';
+import fm from 'front-matter';
+import ShareButton from '../components/ShareButton';
+import { useMeta } from '../hooks/useMeta';
+
+const readTime = (body) => Math.max(1, Math.round(body.split(/\s+/).length / 200));
+
+const modules = import.meta.glob('../content/*.md', { query: '?raw', import: 'default', eager: true });
+
+const ReadingProgress = () => {
+    const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+        const onScroll = () => {
+            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+            const total = scrollHeight - clientHeight;
+            setProgress(total > 0 ? (scrollTop / total) * 100 : 0);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    return (
+        <div style={{
+            position: 'fixed',
+            top: 'var(--header-height)',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 'min(var(--max-width), 100%)',
+            padding: '0 var(--spacing-md)',
+            zIndex: 99,
+            pointerEvents: 'none',
+        }}>
+            <div style={{
+                width: `${progress}%`,
+                height: '2px',
+                backgroundColor: 'var(--accent)',
+                transition: 'width 0.1s linear',
+            }} />
+        </div>
+    );
+};
+
+const BlogPost = () => {
+    const { slug } = useParams();
+    const postData = modules[`../content/${slug}.md`];
+
+    const { meta, content, mins } = useMemo(() => {
+        if (!postData) return { meta: null, content: '', mins: null };
+        const { attributes, body } = fm(postData);
+        return { meta: attributes, content: body, mins: readTime(body) };
+    }, [postData]);
+
+    useMeta({
+        title: meta?.title ? `${meta.title} — Shivam Tiwari` : 'Shivam Tiwari — Platform Engineer',
+        description: meta?.description || '',
+        path: `/blog/${slug}`,
+        type: 'article',
+    });
+
+    if (!postData) {
+        return (
+            <div style={{ padding: 'var(--spacing-xl) 0', textAlign: 'center' }}>
+                <h2>Post not found</h2>
+                <Link to="/blog" style={{ color: 'var(--accent)' }}>Back to logs</Link>
+            </div>
+        );
+    }
+
+    if (meta?.draft) return <Navigate to="/blog" replace />;
+
+    if (!content) return null;
+
+    return (
+        <article style={{ padding: 'var(--spacing-xl) 0', maxWidth: '680px' }}>
+            <ReadingProgress />
+            <header style={{ marginBottom: 'var(--spacing-lg)' }}>
+                <Link to="/blog" style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', textDecoration: 'none', fontFamily: 'var(--font-mono)' }}>
+                    &larr; logs
+                </Link>
+                {meta.type && (
+                    <div style={{ marginTop: 'var(--spacing-md)' }}>
+                        <span style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: '0.68rem',
+                            letterSpacing: '0.04em',
+                            textTransform: 'uppercase',
+                            color: 'var(--accent)',
+                            border: '1px solid var(--border)',
+                            borderRadius: '4px',
+                            padding: '2px 7px'
+                        }}>
+                            {meta.type}
+                        </span>
+                    </div>
+                )}
+                <h1 style={{
+                    fontSize: 'clamp(1.6rem, 4vw, 2.2rem)',
+                    marginTop: 'var(--spacing-sm)',
+                    marginBottom: 'var(--spacing-sm)',
+                    lineHeight: 1.25,
+                    letterSpacing: '-0.02em'
+                }}>
+                    {meta.title}
+                </h1>
+                <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', display: 'flex', gap: '12px', flexWrap: 'wrap', fontFamily: 'var(--font-mono)', alignItems: 'center' }}>
+                    <span>
+                        {new Date(meta.date).toLocaleDateString('en-GB', {
+                            year: 'numeric', month: 'long', day: 'numeric'
+                        })}
+                    </span>
+                    {mins && <span>{mins} min read</span>}
+                    {(meta.tags || []).map(tag => (
+                        <span key={tag} style={{ color: 'var(--accent)' }}>{tag}</span>
+                    ))}
+                    <ShareButton title={meta.title} slug={slug} />
+                </div>
+            </header>
+
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'BlogPosting',
+                    headline: meta.title,
+                    description: meta.description || '',
+                    datePublished: meta.date,
+                    url: `${import.meta.env.VITE_SITE_URL || 'https://shivamtiwari.dev'}/blog/${slug}`,
+                    author: {
+                        '@type': 'Person',
+                        name: 'Shivam Tiwari',
+                        url: 'https://shivamtiwari.dev',
+                    },
+                    publisher: {
+                        '@type': 'Person',
+                        name: 'Shivam Tiwari',
+                        url: 'https://shivamtiwari.dev',
+                    },
+                })}}
+            />
+
+            <div className="markdown-content">
+                <ReactMarkdown
+                    rehypePlugins={[rehypeHighlight]}
+                    components={{
+                        img: ({ ...props }) => <img style={{ maxWidth: '100%', borderRadius: '6px', margin: '24px 0' }} {...props} />,
+                        h2: ({ ...props }) => <h2 style={{ margin: '36px 0 14px', fontSize: '1.35rem', letterSpacing: '-0.01em' }} {...props} />,
+                        h3: ({ ...props }) => <h3 style={{ margin: '28px 0 10px', fontSize: '1.1rem' }} {...props} />,
+                        p: ({ ...props }) => <p style={{ marginBottom: '1.4em', color: 'var(--text-primary)', lineHeight: 1.75 }} {...props} />,
+                        blockquote: ({ ...props }) => (
+                            <blockquote style={{
+                                borderLeft: '3px solid var(--accent)',
+                                paddingLeft: '16px',
+                                margin: '24px 0',
+                                color: 'var(--text-secondary)',
+                                fontStyle: 'italic'
+                            }} {...props} />
+                        ),
+                        li: ({ ...props }) => <li style={{ marginBottom: '6px', marginLeft: '20px', lineHeight: 1.65, color: 'var(--text-primary)' }} {...props} />,
+                        a: ({ ...props }) => <a style={{ color: 'var(--accent)', textDecoration: 'underline', textDecorationThickness: '1px', textUnderlineOffset: '3px' }} {...props} />,
+                        strong: ({ ...props }) => <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }} {...props} />,
+                    }}
+                >
+                    {content}
+                </ReactMarkdown>
+            </div>
+
+        </article>
+    );
+};
+
+export default BlogPost;

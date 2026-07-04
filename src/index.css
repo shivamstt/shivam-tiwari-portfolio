@@ -1,0 +1,382 @@
+/* Design System: Minimal & Clean */
+:root {
+  --bg-primary: #0B0B10;
+  --bg-card: #131318;
+  --text-primary: #EDEDED;
+  --text-secondary: #8B8B99;
+  --accent: #7C5CFF;
+  --accent-glow: rgba(124, 92, 255, 0.18);
+  --border: #23232E;
+}
+
+[data-theme='light'] {
+  --bg-primary: #FFFFFF;
+  --bg-card: #F7F7FA;
+  --text-primary: #111114;
+  --text-secondary: #64646F;
+  --accent: #6947E0;
+  --accent-glow: rgba(105, 71, 224, 0.1);
+  --border: #E7E7EF;
+}
+
+/* Spacing */
+:root {
+
+  /* Spacing */
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+  --spacing-xl: 64px;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', ui-monospace, 'Consolas', monospace;
+
+  /* Layout */
+  --max-width: 800px;
+  --header-height: 70px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  background-image: radial-gradient(600px circle at 15% 0%, var(--accent-glow), transparent 60%);
+  background-repeat: no-repeat;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Utilities */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.intro-text {
+   font-size: 1.1rem;
+   color: var(--text-secondary);
+   max-width: 600px;
+   margin-bottom: var(--spacing-md);
+}
+
+.blog-card {
+  display: block;
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.15s ease;
+}
+
+.blog-card:last-child {
+  border-bottom: none;
+}
+
+.blog-card:hover {
+  opacity: 0.75;
+}
+
+/* Remove default list padding for nav */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Code blocks */
+.markdown-content pre {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  margin: 20px 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.markdown-content code {
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.875em;
+}
+
+.markdown-content :not(pre) > code {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 2px 6px;
+  color: var(--accent);
+}
+
+/* highlight.js theme overrides — minimal, fits both dark/light */
+.hljs {
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in { color: #7ec8e3; }
+
+.hljs-string,
+.hljs-attr { color: #98d4a3; }
+
+.hljs-comment { color: var(--text-secondary); font-style: italic; }
+
+.hljs-number,
+.hljs-literal { color: #f0a05a; }
+
+.hljs-title,
+.hljs-class .hljs-title { color: var(--accent); }
+
+[data-theme='light'] .hljs-keyword,
+[data-theme='light'] .hljs-selector-tag,
+[data-theme='light'] .hljs-built_in { color: #0550ae; }
+
+[data-theme='light'] .hljs-string,
+[data-theme='light'] .hljs-attr { color: #116329; }
+
+[data-theme='light'] .hljs-number,
+[data-theme='light'] .hljs-literal { color: #953800; }
+
+[data-theme='light'] .hljs-title { color: var(--accent); }
+
+/* ============================================================
+   Status-page redesign
+   ============================================================ */
+
+.mono { font-family: var(--font-mono); }
+
+/* Subtle reveal on load — disabled for reduced motion */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  animation: fadeUp 0.5s ease both;
+}
+
+/* Status dot — soft pulse to read as "live" rather than static */
+@keyframes pulseDot {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+  50% { box-shadow: 0 0 0 5px var(--accent-glow); }
+}
+
+.status-dot {
+  animation: pulseDot 2.4s ease-in-out infinite;
+}
+
+/* Project / system cards */
+.project-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+/* ---- Command palette ---- */
+.cmdk-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 14vh;
+  z-index: 1000;
+  animation: cmdkFade 0.12s ease;
+}
+
+[data-theme='light'] .cmdk-overlay {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+@keyframes cmdkFade { from { opacity: 0; } to { opacity: 1; } }
+
+.cmdk-panel {
+  width: min(560px, 92vw);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  animation: cmdkPop 0.14s ease;
+}
+
+@keyframes cmdkPop { from { transform: scale(0.98); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.cmdk-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cmdk-input-row input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+}
+
+.cmdk-input-row input::placeholder { color: var(--text-secondary); }
+
+.cmdk-kbd, kbd.cmdk-kbd {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.cmdk-list {
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.cmdk-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.cmdk-item.is-active { background: var(--bg-primary); }
+
+.cmdk-item-icon { display: flex; color: var(--text-secondary); }
+.cmdk-item.is-active .cmdk-item-icon { color: var(--accent); }
+.cmdk-item-label { flex: 1; }
+.cmdk-item-group {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: lowercase;
+}
+
+.cmdk-empty {
+  padding: 18px 12px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Focus visibility */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .project-card:hover { transform: none; }
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+/* Tablet — tighten spacing */
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 48px;
+    --spacing-lg: 24px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  :root {
+    --spacing-xl: 36px;
+    --spacing-lg: 20px;
+    --spacing-md: 14px;
+  }
+
+  /* Header: hide section anchor links — users scroll on mobile */
+  .nav-home-link {
+    display: none;
+  }
+
+  /* Hero: hide ⌘K button — no keyboard shortcut on touchscreens */
+  .hero-cmd-btn {
+    display: none;
+  }
+
+  /* Deploy log: tighten gap between jobs */
+  .deploy-log-list {
+    gap: var(--spacing-lg) !important;
+  }
+
+  /* Blog post and blog listing top padding */
+  article,
+  .blog-listing-page {
+    padding-top: var(--spacing-lg) !important;
+  }
+
+  /* Code blocks: smaller font, tighter padding on mobile */
+  .markdown-content pre {
+    padding: 12px 14px;
+    font-size: 0.8rem;
+  }
+
+  /* Contact: long email address wraps cleanly */
+  .contact-links a {
+    word-break: break-all;
+  }
+
+  /* Footer: stack instead of row */
+  footer {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: var(--spacing-sm) !important;
+  }
+}
