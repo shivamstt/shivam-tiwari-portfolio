@@ -4,7 +4,7 @@ const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://shivamtiwari.dev';
 
 const DEFAULTS = {
     title: 'Shivam Tiwari — Platform Engineer',
-    description: 'Platform and DevOps engineer specializing in AWS, Terraform, and Kubernetes. I design resilient cloud infrastructure and automate the pipelines that ship it.',
+    description: 'Platform and DevOps engineer specializing in AWS, Terraform, and Kubernetes — building resilient cloud infrastructure and the automation that keeps it running.',
     url: SITE_URL + '/',
     type: 'website',
 };

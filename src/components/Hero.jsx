@@ -16,7 +16,7 @@ const personSchema = {
     name: 'Shivam Tiwari',
     url: 'https://shivamtiwari.dev',
     jobTitle: 'Platform Engineer',
-    description: 'Platform and DevOps engineer specializing in AWS, Terraform, and Kubernetes.',
+    description: 'Platform and DevOps engineer specializing in AWS, Terraform, and Kubernetes — building resilient cloud infrastructure and the automation that keeps it running.',
     sameAs: [
         'https://www.linkedin.com/in/shivamtiwari-i/',
     ],
@@ -62,7 +62,7 @@ const Hero = () => {
                 fontFamily: 'var(--font-mono)', fontSize: '0.85rem',
                 color: 'var(--text-secondary)', marginBottom: 'var(--spacing-sm)'
             }}>
-                Platform Engineer · cloud infrastructure · CI/CD · reliability
+                Platform Engineer · cloud infrastructure · CI/CD · observability
             </p>
             <h1 className="gradient-text" style={{
                 fontFamily: 'var(--font-display)',
@@ -81,7 +81,8 @@ const Hero = () => {
                 lineHeight: 1.65
             }}>
                 I design and run cloud platforms end to end — resilient AWS infrastructure,
-                automated pipelines, and the observability to know it's actually working.
+                CI/CD pipelines that ship with confidence, and the observability to prove
+                it's all actually working.
             </p>
 
             <div style={{ display: 'flex', gap: 'var(--spacing-md)', flexWrap: 'wrap', marginBottom: 'var(--spacing-lg)' }}>
