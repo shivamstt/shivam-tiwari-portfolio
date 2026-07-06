@@ -14,7 +14,7 @@ dark/light portfolio with a Markdown-powered blog.
 - **CSS custom properties** — theming and a dark/light toggle, no UI framework
 - **Inter** via Google Fonts
 
-## Project structure
+## Project structure for portfolio
 
 ```
 src/
