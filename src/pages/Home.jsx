@@ -104,17 +104,11 @@ const certifications = [
     }
 ];
 
-const activities = [
-    {
-        title: 'PSIT Prayas — Eco Club',
-        subtitle: 'Mentored 10–15 student teams weekly on sustainable, eco-friendly practices',
-        issuer: 'Aug 2018 – May 2020'
-    }
-];
+const activities = [];
 
 const education = {
     degree: 'B.Tech, Information Technology',
-    school: 'Abdul Kalam Technical University, Lucknow, U.P — PSIT College of Engineering',
+    school: 'Abdul Kalam Technical University, Lucknow, U.P',
     period: 'Graduating Sep 2020',
     detail: '8.1 SGPA'
 };
@@ -216,7 +210,7 @@ const Home = () => {
 
             {/* Certifications + Activities */}
             <section>
-                <SectionLabel>Certifications & Activities</SectionLabel>
+                <SectionLabel>Certifications</SectionLabel>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
                     {certifications.map((cert, i) => (
                         <div key={i} className="glass card-glow" style={{ borderRadius: '10px', padding: 'var(--spacing-md)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '4px' }}>
