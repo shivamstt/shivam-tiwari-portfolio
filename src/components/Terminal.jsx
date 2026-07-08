@@ -5,6 +5,8 @@ const SCRIPT = [
     { type: 'out', text: 'Apply complete! Resources: 42 added, 0 destroyed.' },
     { type: 'cmd', text: 'kubectl rollout status deployment/api' },
     { type: 'out', text: 'deployment "api" successfully rolled out' },
+    { type: 'cmd', text: 'aws fis start-experiment --id az-failure' },
+    { type: 'out', text: 'experiment RUNNING — no SLO breach detected' },
     { type: 'cmd', text: 'datadog-ci monitor status' },
     { type: 'ok', text: '✓ all systems operational' },
 ];

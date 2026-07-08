@@ -3,23 +3,28 @@ import React from 'react';
 const services = [
     {
         name: 'Cloud & IaC',
-        summary: 'Provisioning and standardizing infrastructure across accounts.',
+        summary: 'Provisioning and standardizing multi-account AWS infrastructure as code.',
         tech: ['AWS', 'Azure', 'Terraform', 'CloudFormation', 'Packer']
+    },
+    {
+        name: 'Kubernetes & Containers',
+        summary: 'Running production workloads on EKS — autoscaling, rollouts, and packaging.',
+        tech: ['Kubernetes', 'EKS', 'Docker', 'Helm', 'ArgoCD']
     },
     {
         name: 'CI/CD & Automation',
         summary: 'Pipelines that build, test, and ship without babysitting.',
-        tech: ['Jenkins', 'GitLab CI/CD', 'ArgoCD', 'Helm', 'Ansible']
-    },
-    {
-        name: 'Containers',
-        summary: 'Packaging and orchestrating workloads at scale.',
-        tech: ['Docker', 'Kubernetes', 'EKS']
+        tech: ['Jenkins', 'GitLab CI/CD', 'Bitbucket Pipelines', 'Ansible']
     },
     {
         name: 'Observability',
-        summary: 'Knowing what broke before a customer does.',
-        tech: ['Datadog', 'Prometheus', 'Grafana', 'AWS FIS']
+        summary: 'Metrics, logs, and traces that surface what broke before a customer does.',
+        tech: ['Datadog', 'Prometheus', 'Grafana', 'CloudWatch']
+    },
+    {
+        name: 'Resilience & DR',
+        summary: 'Designing for failure and proving it with chaos experiments, not assumptions.',
+        tech: ['AWS FIS', 'Multi-AZ', 'Blue/Green', 'AWS DMS']
     }
 ];
 

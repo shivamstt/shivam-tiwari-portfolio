@@ -2,7 +2,7 @@ import React from 'react';
 import Terminal from './Terminal';
 
 const metrics = [
-    { value: '5+ yrs', label: 'designing and running cloud platforms' },
+    { value: '6+ yrs', label: 'building on AWS, Kubernetes, and Terraform' },
     { value: '750+', label: 'servers migrated to unified observability' },
     { value: '−35%', label: 'MTTD after the Datadog migration', good: true },
     { value: '92%', label: 'AWS Security Hub compliance, up from 65%', good: true }
@@ -16,7 +16,7 @@ const personSchema = {
     name: 'Shivam Tiwari',
     url: 'https://shivamtiwari.dev',
     jobTitle: 'Platform Engineer',
-    description: 'Platform and DevOps engineer specializing in AWS, Terraform, and Kubernetes — building resilient cloud infrastructure and the automation that keeps it running.',
+    description: '6+ years as a DevOps and Platform Engineer specializing in AWS, Kubernetes, and Terraform — building resilient cloud infrastructure, automating delivery, and running the observability that keeps it all up.',
     sameAs: [
         'https://www.linkedin.com/in/shivamtiwari-i/',
     ],
@@ -62,7 +62,7 @@ const Hero = () => {
                 fontFamily: 'var(--font-mono)', fontSize: '0.85rem',
                 color: 'var(--text-secondary)', marginBottom: 'var(--spacing-sm)'
             }}>
-                Platform Engineer · cloud infrastructure · CI/CD · observability
+                Platform Engineer · Kubernetes · AWS · Terraform · observability · resiliency
             </p>
             <h1 className="gradient-text" style={{
                 fontFamily: 'var(--font-display)',
@@ -80,9 +80,9 @@ const Hero = () => {
                 marginBottom: 'var(--spacing-lg)',
                 lineHeight: 1.65
             }}>
-                I design and run cloud platforms end to end — resilient AWS infrastructure,
-                CI/CD pipelines that ship with confidence, and the observability to prove
-                it's all actually working.
+                6+ years designing and running cloud platforms end to end — resilient AWS
+                infrastructure, Kubernetes at scale, Terraform-driven automation, and the
+                observability and chaos testing that prove it holds up under failure.
             </p>
 
             <div style={{ display: 'flex', gap: 'var(--spacing-md)', flexWrap: 'wrap', marginBottom: 'var(--spacing-lg)' }}>

@@ -44,11 +44,12 @@ const experience = [
             'Led migration of the observability platform from AppDynamics to Datadog across 750+ servers, reducing MTTD by 35% and cutting monitoring costs by 20%.',
             'Partnered with security teams to remediate high-priority AWS Security Hub findings, raising compliance posture from 65% to 92% within three months.',
             'Implemented an enterprise-wide CI/CD strategy across Jenkins, GitLab CI/CD, and Bitbucket Pipelines, cutting release cycle times by 40%.',
-            'Led containerization of legacy applications with Docker and migration to Kubernetes, reducing deployment failures by 30% and enabling blue/green deployments.',
-            'Designed and rolled out reusable Terraform modules to standardize provisioning, reducing deployment errors by 50%.',
-            'Orchestrated disaster recovery experiments with AWS Fault Injection Service, simulating multi-AZ failures to surface and remediate resiliency gaps.'
+            'Led containerization of legacy applications with Docker and migration to EKS, tuning HPA and pod disruption budgets to cut deployment failures by 30% and enable zero-downtime blue/green deployments.',
+            'Designed and rolled out reusable Terraform modules across AWS accounts to standardize provisioning, reducing deployment errors by 50% and cutting environment spin-up time from days to hours.',
+            'Orchestrated disaster recovery experiments with AWS Fault Injection Service, simulating multi-AZ and node-level failures to surface and remediate resiliency gaps before they hit production.',
+            'Built Datadog SLOs, dashboards, and alerting on top of Prometheus and Grafana metrics, giving on-call teams a single pane of glass across Kubernetes workloads.'
         ],
-        tags: ['AWS', 'Terraform', 'Kubernetes', 'Docker', 'Datadog', 'Jenkins', 'GitLab CI/CD', 'Ansible']
+        tags: ['AWS', 'Terraform', 'Kubernetes', 'EKS', 'Docker', 'Datadog', 'Prometheus', 'Grafana', 'Jenkins', 'GitLab CI/CD', 'Ansible']
     },
     {
         company: 'Starbucks India',
@@ -57,12 +58,12 @@ const experience = [
         hash: 'b71de08',
         location: 'Mumbai, Maharashtra',
         highlights: [
-            'Designed and implemented scalable AWS infrastructure (EC2, VPC, S3, RDS) to support high-availability applications.',
-            'Migrated large-scale databases with AWS DMS, including on-prem Oracle to RDS/Postgres and Oracle to Kafka, cutting migration timelines.',
-            'Automated PostgreSQL backup and restore workflows between EC2 and S3, improving disaster recovery readiness.',
-            'Partnered with multiple teams to transition from Debezium to AWS DMS for faster, more reliable migrations.'
+            'Designed and implemented scalable, multi-AZ AWS infrastructure (EC2, VPC, S3, RDS) provisioned via Terraform to support high-availability applications.',
+            'Migrated large-scale databases with AWS DMS, including on-prem Oracle to RDS/Postgres and Oracle to Kafka, cutting migration timelines and downtime windows.',
+            'Automated PostgreSQL backup, restore, and failover workflows between EC2 and S3, improving disaster recovery readiness and RPO/RTO targets.',
+            'Partnered with multiple teams to transition from Debezium to AWS DMS for faster, more reliable, and easier-to-operate migrations.'
         ],
-        tags: ['AWS', 'RDS', 'AWS DMS', 'Kafka', 'PostgreSQL', 'Azure']
+        tags: ['AWS', 'Terraform', 'RDS', 'AWS DMS', 'Kafka', 'PostgreSQL', 'Azure']
     },
     {
         company: 'Tata Consultancy Services',
@@ -71,13 +72,14 @@ const experience = [
         hash: '4c8e5a1',
         location: 'Mumbai, Maharashtra',
         highlights: [
-            'Reduced provisioning time by 50% by building reusable Terraform templates for multi-environment deployments.',
+            'Reduced provisioning time by 50% by building reusable Terraform templates and modules for multi-environment deployments.',
+            'Containerized internal services with Docker and deployed to Kubernetes, laying the groundwork for later EKS adoption.',
             'Automated Kafka cluster management with Ansible, integrated into CI/CD pipelines via Jenkins.',
             'Delivered multiple on-prem to cloud database migrations (Oracle → Kafka, Oracle → Postgres, Postgres → Postgres) using AWS DMS.',
             'Monitored and optimized AWS resources with CloudWatch, CloudTrail, and Cost Explorer, reducing costs by 20% while maintaining high availability.',
             'Configured IAM roles, security groups, encryption, and access policies to strengthen infrastructure and application security.'
         ],
-        tags: ['AWS', 'Terraform', 'Ansible', 'Jenkins', 'Kubernetes', 'AWS DMS']
+        tags: ['AWS', 'Terraform', 'Ansible', 'Jenkins', 'Docker', 'Kubernetes', 'AWS DMS']
     }
 ];
 
