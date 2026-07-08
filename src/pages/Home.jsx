@@ -95,6 +95,12 @@ const certifications = [
         issuer: 'HashiCorp',
         period: '',
         url: ''
+    },
+    {
+        name: 'Claude Certified Architect – Foundations',
+        issuer: 'Anthropic',
+        period: '',
+        url: ''
     }
 ];
 

@@ -4,9 +4,7 @@ const ThemeContext = createContext({ theme: 'dark', toggleTheme: () => {} });
 
 export function ThemeProvider({ children }) {
     const [theme, setTheme] = useState(
-        () =>
-            localStorage.getItem('theme') ||
-            (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+        () => localStorage.getItem('theme') || 'dark'
     );
 
     useEffect(() => {
