@@ -56,17 +56,19 @@ const experience = [
     },
     {
         company: 'Starbucks India',
-        role: 'Assistant Manager – AWS',
+        role: 'Software Engineer',
         period: 'May 2023 – Nov 2023',
         hash: 'b71de08',
         location: 'Mumbai, Maharashtra',
         highlights: [
-            'Designed and implemented scalable, multi-AZ AWS infrastructure (EC2, VPC, S3, RDS) provisioned via Terraform to support high-availability applications.',
+            'Designed and implemented scalable, multi-AZ AWS infrastructure (EC2, VPC, S3, RDS) provisioned entirely through Terraform modules to support high-availability applications.',
+            'Containerized backend services with Docker and deployed them to Kubernetes, defining resource requests/limits and readiness/liveness probes to keep rollouts stable.',
+            'Wrote Terraform modules for VPC, IAM, and RDS that were reused across environments, cutting new-environment setup from days to hours.',
             'Migrated large-scale databases with AWS DMS, including on-prem Oracle to RDS/Postgres and Oracle to Kafka, cutting migration timelines and downtime windows.',
             'Automated PostgreSQL backup, restore, and failover workflows between EC2 and S3, improving disaster recovery readiness and RPO/RTO targets.',
             'Partnered with multiple teams to transition from Debezium to AWS DMS for faster, more reliable, and easier-to-operate migrations.'
         ],
-        tags: ['AWS', 'Terraform', 'RDS', 'AWS DMS', 'Kafka', 'PostgreSQL', 'Azure']
+        tags: ['AWS', 'Terraform', 'Kubernetes', 'Docker', 'RDS', 'AWS DMS', 'Kafka', 'PostgreSQL', 'Azure']
     },
     {
         company: 'Tata Consultancy Services',
