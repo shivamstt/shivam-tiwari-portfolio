@@ -4,7 +4,7 @@ import Terminal from './Terminal';
 const metrics = [
     { value: '6+ yrs', label: 'building on AWS, Kubernetes, and Terraform' },
     { value: '750+', label: 'servers migrated to unified observability' },
-    { value: '−42%', label: 'MTTD after the Datadog migration', good: true },
+    { value: '−40%', label: 'release cycle time after CI/CD overhaul', good: true },
     { value: '94%', label: 'AWS Security Hub compliance, up from 58%', good: true }
 ];
 
