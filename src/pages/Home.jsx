@@ -41,15 +41,18 @@ const experience = [
         hash: 'f3a91c2',
         location: 'Remote, Pune',
         highlights: [
-            'Led migration of the observability platform from AppDynamics to Datadog across 750+ servers, reducing MTTD by 35% and cutting monitoring costs by 20%.',
-            'Partnered with security teams to remediate high-priority AWS Security Hub findings, raising compliance posture from 65% to 92% within three months.',
+            'Led migration of the observability platform from AppDynamics to Datadog across 750+ servers, reducing MTTD by 42% and cutting monitoring costs by 20%.',
+            'Partnered with security teams to remediate high-priority AWS Security Hub findings, raising compliance posture from 58% to 94% within three months.',
             'Implemented an enterprise-wide CI/CD strategy across Jenkins, GitLab CI/CD, and Bitbucket Pipelines, cutting release cycle times by 40%.',
             'Led containerization of legacy applications with Docker and migration to EKS, tuning HPA and pod disruption budgets to cut deployment failures by 30% and enable zero-downtime blue/green deployments.',
+            'Adopted Karpenter for EKS node autoscaling, right-sizing the spot/on-demand mix per workload and cutting compute costs by 18% without breaching SLAs.',
+            'Rolled out Argo Rollouts for canary releases on customer-facing services, catching regressions in staging before they reached full production traffic.',
+            'Hardened cluster security with Kubernetes NetworkPolicies, Pod Security Standards, and IAM roles for service accounts (IRSA), closing off lateral-movement paths flagged in security reviews.',
             'Designed and rolled out reusable Terraform modules across AWS accounts to standardize provisioning, reducing deployment errors by 50% and cutting environment spin-up time from days to hours.',
             'Orchestrated disaster recovery experiments with AWS Fault Injection Service, simulating multi-AZ and node-level failures to surface and remediate resiliency gaps before they hit production.',
             'Built Datadog SLOs, dashboards, and alerting on top of Prometheus and Grafana metrics, giving on-call teams a single pane of glass across Kubernetes workloads.'
         ],
-        tags: ['AWS', 'Terraform', 'Kubernetes', 'EKS', 'Docker', 'Datadog', 'Prometheus', 'Grafana', 'Jenkins', 'GitLab CI/CD', 'Ansible']
+        tags: ['AWS', 'Terraform', 'Kubernetes', 'EKS', 'Karpenter', 'Argo Rollouts', 'Docker', 'Datadog', 'Prometheus', 'Grafana', 'Jenkins', 'GitLab CI/CD', 'Ansible']
     },
     {
         company: 'Starbucks India',
