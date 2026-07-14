@@ -35,10 +35,13 @@ const CommandPalette = () => {
 
     const commands = useMemo(() => [
         { id: 'systems', group: 'Navigate', label: 'Systems', hint: 'stack cloud iac ci/cd containers observability skills', icon: <Icon d="M3 12h4l3 8 4-16 3 8h4" />, run: () => goToSection('systems') },
-        { id: 'work', group: 'Navigate', label: 'Deploy log', hint: 'experience history jobs work', icon: <Icon d="M12 8v4l3 3M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z" />, run: () => goToSection('work') },
+        { id: 'work', group: 'Navigate', label: 'Deploy log', hint: 'experience history jobs work kubernetes aws terraform', icon: <Icon d="M12 8v4l3 3M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z" />, run: () => goToSection('work') },
+        { id: 'certs', group: 'Navigate', label: 'Certifications', hint: 'aws terraform claude certified', icon: <Icon d="M12 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM8.5 14 6 22l6-3 6 3-2.5-8" />, run: () => goToSection('certs') },
+        { id: 'education', group: 'Navigate', label: 'Education', hint: 'degree college university', icon: <Icon d="M2 9l10-5 10 5-10 5-10-5zM6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5" />, run: () => goToSection('education') },
         { id: 'contact', group: 'Navigate', label: 'Contact', hint: 'reach out hire', icon: <Icon d="M4 4h16v16H4zM4 7l8 6 8-6" />, run: () => goToSection('contact') },
         { id: 'blog', group: 'Navigate', label: 'Logs', hint: 'blog posts articles writing postmortem notes', icon: <Icon d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />, run: () => navigate('/blog') },
         { id: 'email', group: 'Links', label: 'Email me', hint: 'mail contact', icon: <Icon d="M4 4h16v16H4zM4 7l8 6 8-6" />, run: () => { window.location.href = 'mailto:shivam.tiwarri@gmail.com'; } },
+        { id: 'copy-email', group: 'Links', label: 'Copy email address', hint: 'clipboard mail contact', icon: <Icon d="M9 9h10v12H9zM5 15V3h10" />, run: () => navigator.clipboard?.writeText('shivam.tiwarri@gmail.com') },
         { id: 'linkedin', group: 'Links', label: 'LinkedIn', hint: 'profile network', icon: <Icon><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></Icon>, run: () => window.open('https://www.linkedin.com/in/shivamtiwari-i/', '_blank', 'noopener') },
         { id: 'theme', group: 'Actions', label: theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme', hint: 'toggle dark light mode appearance', icon: <Icon d="M12 3a9 9 0 1 0 9 9c-2 2-7 2-9 0s-2-7 0-9z" />, run: () => toggleTheme() },
     ], [goToSection, navigate, toggleTheme, theme]);

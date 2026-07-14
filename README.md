@@ -5,7 +5,7 @@ dark/light portfolio with a Markdown-powered blog.
 
 🔗 **Live:** _add your deployed URL here_
 
-## Tech stack
+## Tech stack about portfolio
 
 - **React 19** + **Vite 7** — SPA with fast HMR and an optimized production build
 - **React Router 7** — client-side routing (`/`, `/blog`, `/blog/:slug`)

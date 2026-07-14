@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import Hero from '../components/Hero';
 import Systems from '../components/Systems';
 
@@ -20,15 +20,24 @@ const SectionLabel = ({ children }) => (
     </p>
 );
 
-const SkillTag = ({ children }) => (
-    <span style={{
-        fontSize: '0.8rem',
-        color: 'var(--text-secondary)',
-        border: '1px solid var(--border)',
-        padding: '4px 10px',
-        borderRadius: '4px',
-        display: 'inline-block'
-    }}>
+const SkillTag = ({ children, active, onClick }) => (
+    <span
+        onClick={onClick}
+        role={onClick ? 'button' : undefined}
+        tabIndex={onClick ? 0 : undefined}
+        onKeyDown={onClick ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } } : undefined}
+        style={{
+            fontSize: '0.8rem',
+            color: active ? 'var(--bg-primary)' : 'var(--text-secondary)',
+            backgroundColor: active ? 'var(--accent)' : 'transparent',
+            border: `1px solid ${active ? 'var(--accent)' : 'var(--border)'}`,
+            padding: '4px 10px',
+            borderRadius: '4px',
+            display: 'inline-block',
+            cursor: onClick ? 'pointer' : 'default',
+            transition: 'background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease'
+        }}
+    >
         {children}
     </span>
 );
@@ -119,6 +128,16 @@ const education = {
 };
 
 const Home = () => {
+    const [activeTag, setActiveTag] = useState(null);
+    const [emailCopied, setEmailCopied] = useState(false);
+
+    const allTags = useMemo(
+        () => [...new Set(experience.flatMap((job) => job.tags))].sort(),
+        []
+    );
+
+    const toggleTag = (tag) => setActiveTag((t) => (t === tag ? null : tag));
+
     return (
         <main>
             <Hero />
@@ -128,11 +147,27 @@ const Home = () => {
             {/* Experience — styled as a deploy log */}
             <section id="work">
                 <SectionLabel>Deploy Log</SectionLabel>
+
+                {/* Skill filter — click a tag to isolate matching roles */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: 'var(--spacing-lg)', marginTop: '-8px' }}>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
+                        {activeTag ? `filtering by ${activeTag}` : 'filter by skill:'}
+                    </span>
+                    {activeTag ? (
+                        <SkillTag active onClick={() => setActiveTag(null)}>✕ clear</SkillTag>
+                    ) : (
+                        allTags.map((tag) => (
+                            <SkillTag key={tag} onClick={() => toggleTag(tag)}>{tag}</SkillTag>
+                        ))
+                    )}
+                </div>
+
                 <div className="deploy-log-list" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-xl)' }}>
                     {experience.map((job, i) => {
                         const current = i === 0;
+                        const matches = !activeTag || job.tags.includes(activeTag);
                         return (
-                        <div key={i} style={{ display: 'flex', gap: 'var(--spacing-md)' }}>
+                        <div key={i} style={{ display: 'flex', gap: 'var(--spacing-md)', opacity: matches ? 1 : 0.35, transition: 'opacity 0.2s ease' }}>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, paddingTop: '6px' }}>
                                 <span style={{
                                     width: '9px', height: '9px', borderRadius: '50%',
@@ -194,7 +229,7 @@ const Home = () => {
                             )}
                             <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                                 {job.tags.map((tag, k) => (
-                                    <SkillTag key={k}>{tag}</SkillTag>
+                                    <SkillTag key={k} active={tag === activeTag} onClick={() => toggleTag(tag)}>{tag}</SkillTag>
                                 ))}
                             </div>
                             </div>
@@ -214,7 +249,7 @@ const Home = () => {
             <SectionDivider />
 
             {/* Certifications + Activities */}
-            <section>
+            <section id="certs">
                 <SectionLabel>Certifications</SectionLabel>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
                     {certifications.map((cert, i) => (
@@ -252,7 +287,7 @@ const Home = () => {
             <SectionDivider />
 
             {/* Education */}
-            <section>
+            <section id="education">
                 <SectionLabel>Education</SectionLabel>
                 <div className="glass card-glow" style={{ borderRadius: '10px', padding: 'var(--spacing-md)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '4px' }}>
                     <div>
@@ -279,19 +314,41 @@ const Home = () => {
                 }}>
                     Building or scaling a platform? Let's talk.
                 </p>
-                <div className="contact-links" style={{ display: 'flex', gap: 'var(--spacing-lg)', flexWrap: 'wrap' }}>
-                    <a
-                        href="mailto:shivam.tiwarri@gmail.com"
-                        style={{
-                            fontSize: '0.95rem',
-                            color: 'var(--accent)',
-                            fontWeight: 500,
-                            borderBottom: '1px solid var(--accent)',
-                            paddingBottom: '2px'
-                        }}
-                    >
-                        shivam.tiwarri@gmail.com
-                    </a>
+                <div className="contact-links" style={{ display: 'flex', gap: 'var(--spacing-lg)', flexWrap: 'wrap', alignItems: 'center' }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                        <a
+                            href="mailto:shivam.tiwarri@gmail.com"
+                            style={{
+                                fontSize: '0.95rem',
+                                color: 'var(--accent)',
+                                fontWeight: 500,
+                                borderBottom: '1px solid var(--accent)',
+                                paddingBottom: '2px'
+                            }}
+                        >
+                            shivam.tiwarri@gmail.com
+                        </a>
+                        <button
+                            onClick={() => {
+                                navigator.clipboard?.writeText('shivam.tiwarri@gmail.com');
+                                setEmailCopied(true);
+                                setTimeout(() => setEmailCopied(false), 1500);
+                            }}
+                            aria-label="Copy email address"
+                            style={{
+                                cursor: 'pointer',
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: '0.72rem',
+                                color: emailCopied ? 'var(--accent)' : 'var(--text-secondary)',
+                                background: 'transparent',
+                                border: '1px solid var(--border)',
+                                borderRadius: '4px',
+                                padding: '2px 7px'
+                            }}
+                        >
+                            {emailCopied ? 'copied ✓' : 'copy'}
+                        </button>
+                    </span>
                     <a
                         href="https://www.linkedin.com/in/shivamtiwari-i/"
                         target="_blank"
