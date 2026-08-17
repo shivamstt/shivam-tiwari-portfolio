@@ -34,6 +34,7 @@ const Header = () => {
                             {isHome ? (
                                 <>
                                     <li className="nav-home-link"><a href="#work" style={{ color: 'var(--text-secondary)' }}>Experience</a></li>
+                                    <li className="nav-home-link"><a href="#projects" style={{ color: 'var(--text-secondary)' }}>Projects</a></li>
                                     <li className="nav-home-link"><a href="#systems" style={{ color: 'var(--text-secondary)' }}>Systems</a></li>
                                     <li className="nav-home-link"><a href="#contact" style={{ color: 'var(--text-secondary)' }}>Contact</a></li>
                                 </>

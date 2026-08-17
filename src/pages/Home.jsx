@@ -97,6 +97,45 @@ const experience = [
     }
 ];
 
+const projects = [
+    {
+        title: 'Observability consolidation',
+        status: 'shipped',
+        summary: 'One monitoring stack, 750+ servers, half the noise.',
+        problem: 'AppDynamics coverage was inconsistent across 750+ servers, and incidents were often spotted by customers before on-call.',
+        approach: 'Migrated the fleet to Datadog, rebuilt dashboards and SLOs on top of Prometheus/Grafana metrics, and tuned alert routing to cut noise.',
+        result: 'MTTD dropped 42% and monitoring spend fell 20%, with one pane of glass across infra and Kubernetes workloads.',
+        tags: ['Datadog', 'Prometheus', 'Grafana', 'AWS']
+    },
+    {
+        title: 'EKS modernization',
+        status: 'shipped',
+        summary: 'Legacy containers to autoscaled, canary-released Kubernetes.',
+        problem: 'Legacy services were deployed by hand with no autoscaling, so releases were risky and infra cost scaled linearly with traffic.',
+        approach: 'Containerized the fleet with Docker, moved it onto EKS, added Karpenter for node autoscaling and Argo Rollouts for canary releases, and hardened the cluster with NetworkPolicies and IRSA.',
+        result: '30% fewer deployment failures, 18% lower compute cost, and zero-downtime blue/green releases as the default.',
+        tags: ['Kubernetes', 'EKS', 'Karpenter', 'Argo Rollouts', 'Docker']
+    },
+    {
+        title: 'Terraform module library',
+        status: 'shipped',
+        summary: 'Reusable IaC that turned days of provisioning into hours.',
+        problem: 'Every team hand-rolled its own AWS provisioning, so environments drifted and small mistakes turned into outages.',
+        approach: 'Designed a set of reusable Terraform modules (VPC, IAM, RDS, EKS) shared across accounts, with guardrails baked in via policy checks.',
+        result: 'Deployment errors dropped 50% and spinning up a new environment went from days to hours.',
+        tags: ['Terraform', 'AWS', 'IAM']
+    },
+    {
+        title: 'Chaos-tested disaster recovery',
+        status: 'shipped',
+        summary: 'Proving resiliency claims with real failure injection, not tabletop exercises.',
+        problem: 'DR runbooks existed on paper but had never been tested against a real multi-AZ or node failure.',
+        approach: 'Ran controlled experiments with AWS Fault Injection Service, simulating AZ and node-level outages against production-like environments.',
+        result: 'Surfaced and closed resiliency gaps before they became incidents, with recovery times now backed by evidence, not assumptions.',
+        tags: ['AWS FIS', 'Multi-AZ', 'Kubernetes']
+    }
+];
+
 const certifications = [
     {
         name: 'AWS Certified Solutions Architect – Associate',
@@ -235,6 +274,49 @@ const Home = () => {
                             </div>
                         </div>
                     );})}
+                </div>
+            </section>
+
+            <SectionDivider />
+
+            {/* Projects — deploy-log wins as standalone case studies */}
+            <section id="projects">
+                <SectionLabel>Projects</SectionLabel>
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                    gap: 'var(--spacing-md)'
+                }}>
+                    {projects.map((p, i) => (
+                        <div key={i} className="glass card-glow" style={{
+                            borderRadius: '10px',
+                            padding: 'var(--spacing-md)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 'var(--spacing-sm)'
+                        }}>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+                                <span style={{ fontWeight: 600, fontSize: '0.98rem', fontFamily: 'var(--font-display)' }}>{p.title}</span>
+                                <span style={{
+                                    fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--accent)',
+                                    border: '1px solid var(--border)', borderRadius: '999px', padding: '2px 8px'
+                                }}>
+                                    {p.status}
+                                </span>
+                            </div>
+                            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{p.summary}</p>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.82rem', lineHeight: 1.55 }}>
+                                <p><span style={{ color: 'var(--accent-2)', fontFamily: 'var(--font-mono)', fontSize: '0.7rem' }}>PROBLEM </span><span style={{ color: 'var(--text-secondary)' }}>{p.problem}</span></p>
+                                <p><span style={{ color: 'var(--accent-2)', fontFamily: 'var(--font-mono)', fontSize: '0.7rem' }}>APPROACH </span><span style={{ color: 'var(--text-secondary)' }}>{p.approach}</span></p>
+                                <p><span style={{ color: 'var(--accent-2)', fontFamily: 'var(--font-mono)', fontSize: '0.7rem' }}>RESULT </span><span style={{ color: 'var(--text-primary)' }}>{p.result}</span></p>
+                            </div>
+                            <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: 'auto', paddingTop: '4px' }}>
+                                {p.tags.map((tag, k) => (
+                                    <SkillTag key={k}>{tag}</SkillTag>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </section>
 
