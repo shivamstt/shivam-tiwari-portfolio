@@ -11,17 +11,32 @@ dark/light portfolio with a Markdown-powered blog.
 - **React Router 7** — client-side routing (`/`, `/blog`, `/blog/:slug`)
 - **Markdown blog** — posts live in `src/content/*.md`, parsed at build time with
   `front-matter`, rendered via `react-markdown` + `rehype-highlight` for syntax highlighting
-- **CSS custom properties** — theming and a dark/light toggle, no UI framework
+- **CSS custom properties** — theming with dark as the default and a manual light toggle
+  (choice persisted in `localStorage`), no UI framework
 - **Inter** via Google Fonts
+
+## Features
+
+- **Deploy Log** — work experience rendered as a commit history, with skill tags that
+  filter the list when clicked
+- **Projects** — case-study cards (problem → approach → result) for key initiatives
+- **Systems · Stack** — the platform toolset grouped by domain (IaC, Kubernetes, CI/CD,
+  observability, resilience)
+- **Command palette** (`⌘K` / `Ctrl+K`) — fuzzy-searchable navigation and actions
+  (jump to a section, copy email, open LinkedIn, toggle theme)
+- **Interactive terminal** — the hero's terminal window plays a scripted intro, then
+  drops into a live shell (`help`, `whoami`, `skills`, `experience`, `certs`, `contact`,
+  `theme`, `linkedin`, `clear`) once you click into it
 
 ## Project structure for portfolio
 
 ```
 src/
-  components/    Header, Hero, Footer, Systems, ThemeToggle, CommandPalette
+  components/    Header, Hero, Footer, Systems, Terminal, ThemeToggle, CommandPalette
   pages/         Home, Blog, BlogPost
   content/       Blog posts as Markdown (front-matter: title, date, description, tags)
   index.css      Design tokens (colors, spacing, type) + base styles
+  theme.jsx      Theme context/provider (dark by default, persisted toggle)
   App.jsx        Routes
 public/
   favicon.svg
