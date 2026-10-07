@@ -8,8 +8,8 @@ const services = [
     },
     {
         name: 'Kubernetes & Containers',
-        summary: 'Running production workloads on EKS — autoscaling, rollouts, and packaging.',
-        tech: ['Kubernetes', 'EKS', 'Docker', 'Helm', 'ArgoCD']
+        summary: 'Running production workloads on EKS — packaging, service mesh, and self-service platform capabilities.',
+        tech: ['Kubernetes', 'EKS', 'Docker', 'Helm', 'Kustomize', 'Istio', 'ArgoCD', 'IDP Self-Service']
     },
     {
         name: 'CI/CD & Automation',

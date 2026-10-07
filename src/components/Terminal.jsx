@@ -121,7 +121,7 @@ const Terminal = () => {
                 push('shivam tiwari — platform & devops engineer, 6+ yrs on AWS, Kubernetes, and Terraform.');
                 break;
             case 'skills':
-                push('AWS · Kubernetes · Terraform · Docker · Datadog · Prometheus/Grafana · Jenkins · GitLab CI/CD · Ansible');
+                push('AWS · Kubernetes · Kustomize · Istio · IDP self-service platforms · Terraform · Docker · Datadog · Prometheus/Grafana · Jenkins · GitLab CI/CD · Ansible');
                 break;
             case 'experience':
                 push('opening the deploy log…');
