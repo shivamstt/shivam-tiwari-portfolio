@@ -58,7 +58,9 @@ const experience = [
             'Rolled out Argo Rollouts for canary releases on customer-facing services, catching regressions in staging before they reached full production traffic.',
             'Hardened cluster security with Kubernetes NetworkPolicies, Pod Security Standards, and IAM roles for service accounts (IRSA), closing off lateral-movement paths flagged in security reviews.',
             'Designed and rolled out reusable Terraform modules across AWS accounts to standardize provisioning, reducing deployment errors by 50% and cutting environment spin-up time from days to hours.',
+            'Added policy checks to shared Terraform modules to catch infrastructure misconfigurations before deployment.',
             'Orchestrated disaster recovery experiments with AWS Fault Injection Service, simulating multi-AZ and node-level failures to surface and remediate resiliency gaps before they hit production.',
+            'Tuned Datadog alert routing to reduce noise and help on-call teams focus on actionable incidents.',
             'Built Datadog SLOs, dashboards, and alerting on top of Prometheus and Grafana metrics, giving on-call teams a single pane of glass across Kubernetes workloads.'
         ],
         tags: ['AWS', 'Terraform', 'Kubernetes', 'EKS', 'Karpenter', 'Argo Rollouts', 'Docker', 'Datadog', 'Prometheus', 'Grafana', 'Jenkins', 'GitLab CI/CD', 'Ansible']
