@@ -14,7 +14,7 @@ const services = [
     {
         name: 'CI/CD & Automation',
         summary: 'Pipelines that build, test, and ship without babysitting.',
-        tech: ['Jenkins', 'GitLab CI/CD', 'Bitbucket Pipelines', 'Ansible']
+        tech: ['Jenkins', 'GitHub Actions', 'GitLab CI/CD', 'Bitbucket Pipelines', 'Ansible']
     },
     {
         name: 'Observability',
